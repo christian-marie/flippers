@@ -10,7 +10,7 @@
 -- This module provides functions to rearrange arguments, such as flip4 and
 -- invert4. Compose them to achive whatever ordering you like.
 --
-module Flippers
+module Control.Flippers
 (
     -- * Flipping
     -- | Perhaps a slight misnomer, these functions shuffle the last argument
