@@ -5,4 +5,4 @@ flip9.
 
 Also provided is invert1 to invert9, for reversing all arguments.
 
-[Here is a brief writeup](http://ponies.io/posts/2013-01-10-xxhash.html) on how this library may be useful.
+[Here is a brief writeup](http://ponies.io/posts/2013-01-14-flippers.html) on how this library may be useful.
