@@ -7,14 +7,24 @@
 -- Stability   : experimental
 -- Portability : portable
 --
--- This module provides functions to rearrange arguments, such as flip4 and
--- invert4. Compose them to achive whatever ordering you like.
+-- This module provides functions to rearrange arguments, such as rotate4 and
+-- flip4. Compose them to achive whatever ordering you like.
 --
 module Control.Flippers
 (
+    -- * Rotation
+    -- | Rotate all arguments right one position
+    rotate1,
+    rotate2,
+    rotate3,
+    rotate4,
+    rotate5,
+    rotate6,
+    rotate7,
+    rotate8,
+    rotate9,
     -- * Flipping
-    -- | Perhaps a slight misnomer, these functions shuffle the last argument
-    -- to the first position.
+    -- | Reverse the order of all arguments
     flip1,
     flip2,
     flip3,
@@ -24,95 +34,84 @@ module Control.Flippers
     flip7,
     flip8,
     flip9,
-    -- * Inverting
-    -- | Reverse the order of all arguments
-    invert1,
-    invert2,
-    invert3,
-    invert4,
-    invert5,
-    invert6,
-    invert7,
-    invert8,
-    invert9,
 ) where
+
+-- | Does nothing, 'id'
+rotate1 :: (a -> b) -> (a -> b)
+rotate1 = id
 
 -- | Does nothing, 'id'
 flip1 :: (a -> b) -> (a -> b)
 flip1 = id
 
--- | Does nothing, 'id'
-invert1 :: (a -> b) -> (a -> b)
-invert1 = id
-
 -- | Move the second argument to the first place
+rotate2 :: (a -> b -> c) -> (b -> a -> c)
+rotate2 = flip
+
+-- | Reverse both arguments, same as 'rotate2'
 flip2 :: (a -> b -> c) -> (b -> a -> c)
 flip2 = flip
 
--- | Reverse both arguments, same as 'flip2'
-invert2 :: (a -> b -> c) -> (b -> a -> c)
-invert2 = flip2
-
 -- | Move the third argument to the first place
-flip3 :: (a -> b -> c -> d) -> (c -> a -> b -> d)
-flip3 = flip . (flip .)
+rotate3 :: (a -> b -> c -> d) -> (c -> a -> b -> d)
+rotate3 = flip . (flip .)
 
 -- | Reverse three arguments
-invert3 :: (a -> b -> c -> d) -> (c -> b -> a -> d)
-invert3 = flip3 . invert2
+flip3 :: (a -> b -> c -> d) -> (c -> b -> a -> d)
+flip3 = rotate3 . flip2
 
 -- | Move the fourth argument to the first place
-flip4 :: (a -> b -> c -> d -> e) -> (d -> a -> b -> c -> e)
-flip4 = flip . (flip3 .)
+rotate4 :: (a -> b -> c -> d -> e) -> (d -> a -> b -> c -> e)
+rotate4 = flip . (rotate3 .)
 
 -- | Reverse four arguments
-invert4 :: (a -> b -> c -> d -> e) -> (d -> c -> b -> a -> e)
-invert4 = flip4 . invert3
+flip4 :: (a -> b -> c -> d -> e) -> (d -> c -> b -> a -> e)
+flip4 = rotate4 . flip3
 
 -- | Move the fifth argument to the first place
-flip5 :: (a -> b -> c -> d -> e -> f) -> (e -> a -> b -> c -> d -> f)
-flip5 = flip . (flip4 .)
+rotate5 :: (a -> b -> c -> d -> e -> f) -> (e -> a -> b -> c -> d -> f)
+rotate5 = flip . (rotate4 .)
 
 -- | Reverse five arguments
-invert5 :: (a -> b -> c -> d -> e -> f) -> (e -> d -> c -> b -> a -> f)
-invert5 = flip5 . invert4
+flip5 :: (a -> b -> c -> d -> e -> f) -> (e -> d -> c -> b -> a -> f)
+flip5 = rotate5 . flip4
 
 -- | Move the sixth argument to the first place
-flip6 :: (a -> b -> c -> d -> e -> f -> g) ->
+rotate6 :: (a -> b -> c -> d -> e -> f -> g) ->
          (f -> a -> b -> c -> d -> e -> g)
-flip6 = flip . (flip5 .)
+rotate6 = flip . (rotate5 .)
 
 -- | Reverse six arguments
-invert6 :: (a -> b -> c -> d -> e -> f -> g) ->
+flip6 :: (a -> b -> c -> d -> e -> f -> g) ->
            (f -> e -> d -> c -> b -> a -> g)
-invert6 = flip6 . invert5
+flip6 = rotate6 . flip5
 
 -- | Move the seventh argument to the first place
-flip7 :: (a -> b -> c -> d -> e -> f -> g -> h) ->
+rotate7 :: (a -> b -> c -> d -> e -> f -> g -> h) ->
          (g -> a -> b -> c -> d -> e -> f -> h)
-flip7 = flip . (flip6 .)
+rotate7 = flip . (rotate6 .)
 
 -- | Reverse seven arguments
-invert7 :: (a -> b -> c -> d -> e -> f -> g -> h) ->
+flip7 :: (a -> b -> c -> d -> e -> f -> g -> h) ->
            (g -> f -> e -> d -> c -> b -> a -> h)
-invert7 = flip7 . invert6
+flip7 = rotate7 . flip6
 
 -- | Move the eight argument to the first place
-flip8 :: (a -> b -> c -> d -> e -> f -> g -> h -> i) ->
+rotate8 :: (a -> b -> c -> d -> e -> f -> g -> h -> i) ->
          (h -> a -> b -> c -> d -> e -> f -> g -> i)
-flip8 = flip . (flip7 .)
+rotate8 = flip . (rotate7 .)
 
 -- | Reverse eight arguments
-invert8 :: (a -> b -> c -> d -> e -> f -> g -> h -> i) ->
+flip8 :: (a -> b -> c -> d -> e -> f -> g -> h -> i) ->
            (h -> g -> f -> e -> d -> c -> b -> a -> i)
-invert8 = flip8 . invert7
+flip8 = rotate8 . flip7
 
 -- | Move the ninth argument to the first place
-flip9 :: (a -> b -> c -> d -> e -> f -> g -> h -> i -> j) ->
+rotate9 :: (a -> b -> c -> d -> e -> f -> g -> h -> i -> j) ->
          (i -> a -> b -> c -> d -> e -> f -> g -> h -> j)
-flip9 = flip . (flip8 .)
+rotate9 = flip . (rotate8 .)
 
 -- | Reverse nine arguments
-invert9 :: (a -> b -> c -> d -> e -> f -> g -> h -> i -> j) ->
+flip9 :: (a -> b -> c -> d -> e -> f -> g -> h -> i -> j) ->
            (i -> h -> g -> f -> e -> d -> c -> b -> a -> j)
-invert9 = flip9 . invert8
+flip9 = rotate9 . flip8
