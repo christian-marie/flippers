@@ -10,7 +10,7 @@
 -- This module provides functions to rearrange arguments, such as rotate4 and
 -- flip4. Compose them to achive whatever ordering you like.
 --
-module Control.Flippers
+module Data.Function.Flippers
 (
     -- * Rotation
     -- | Rotate all arguments right one position
