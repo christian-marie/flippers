@@ -4,7 +4,7 @@ license:        BSD3
 license-file:   LICENSE
 author:         Christian Marie <christian@ponies.io>
 maintainer:     Christian Marie
-description:    flip1 to flip9, invert1 to invert9
+description:    flip1 to flip9, reverse1 to reverse9
 synopsis:       Variations on flip for multiple arguments
 category:       Other
 build-type:     Simple
