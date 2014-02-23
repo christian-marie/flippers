@@ -1,4 +1,4 @@
-# Control.Flippers
+# Data.Function.Flippers
 
 A haskell library to provide flip1, flip2, flip3, flip4, flip5, flip6, flip7, flip8 and
 flip9.
